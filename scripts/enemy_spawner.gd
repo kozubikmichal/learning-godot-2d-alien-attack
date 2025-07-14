@@ -1,5 +1,7 @@
 extends Node2D
 
+signal enemy_spawned(enemy_instance: Enemy)
+
 @onready var timer = $Timer
 
 var enemy_scene = preload("res://scenes/enemy.tscn")
@@ -16,7 +18,7 @@ func spanw_enemy() -> void:
 		.pick_random()\
 		.global_position
 		
-	add_child(enemy)
+	emit_signal("enemy_spawned", enemy)
 
 func _on_timer() -> void:
 	spanw_enemy()
