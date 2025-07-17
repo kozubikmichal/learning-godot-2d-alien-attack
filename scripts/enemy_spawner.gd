@@ -1,10 +1,12 @@
 extends Node2D
 
 signal enemy_spawned(enemy_instance: Enemy)
+signal path_enemy_spawned(path_enemy_instance)
 
 @onready var timer = $Timer
 
 var enemy_scene = preload("res://scenes/enemy.tscn")
+var path_enemy_scene = preload("res://scenes/path_enemy.tscn")
 
 @onready var spawn_positions = $SpawnPositions
 
@@ -20,5 +22,13 @@ func spanw_enemy() -> void:
 		
 	emit_signal("enemy_spawned", enemy)
 
+func spawn_path_enemy() -> void:
+	var enemy: PathEnemy = path_enemy_scene.instantiate()
+	emit_signal("enemy_spawned", enemy)
+
 func _on_timer() -> void:
 	spanw_enemy()
+
+
+func _on_path_enemy_timer_timeout() -> void:
+	spawn_path_enemy()

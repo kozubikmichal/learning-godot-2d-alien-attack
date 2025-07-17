@@ -34,3 +34,9 @@ gizmo_extents = 20.0
 [node name="Timer" type="Timer" parent="."]
 wait_time = 2.0
 autostart = true
+
+[node name="PathEnemyTimer" type="Timer" parent="."]
+wait_time = 5.0
+autostart = true
+
+[connection signal="timeout" from="PathEnemyTimer" to="." method="_on_path_enemy_timer_timeout"]

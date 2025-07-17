@@ -7,6 +7,7 @@ signal took_damage
 @export var speed: float = 300.0
 
 @onready var rocket_container: Node = $RocketContainer
+@onready var rocket_shot_sound = $RocketShotSound
 
 var screen_size: Vector2
 var rocket_scene: PackedScene = preload("res://scenes/rocket.tscn")
@@ -23,6 +24,7 @@ func shoot() -> void:
 	rocket.global_position.y = global_position.y
 	
 	rocket_container.add_child(rocket)
+	rocket_shot_sound.play()
 
 func _physics_process(delta: float) -> void:
 	velocity = speed * Input.get_vector("move_left", "move_right", "move_up", "move_down")
